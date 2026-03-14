@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEST — Build Your Nest in Sicily</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#1a1a2e',
+              dark: '#0d0c22',
+              accent: '#C4704B',
+              'accent-light': '#D4895A',
+              'accent-dark': '#A85A3A',
+              'accent-50': '#FDF5F0',
+              muted: '#6e6e7a',
+              light: '#f7f7f8',
+              border: '#e8e8ec',
+            },
+          },
+          fontFamily: {
+            display: ['DM Serif Display', 'Georgia', 'serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    html { scroll-behavior: smooth; }
+    .heading-tight { letter-spacing: -0.03em; }
+    .body-relaxed { line-height: 1.7; }
+
+    /* Layered shadows */
+    .shadow-card {
+      box-shadow: 0 1px 3px rgba(13,12,34,0.04), 0 4px 16px rgba(13,12,34,0.06);
+    }
+    .shadow-card-hover {
+      box-shadow: 0 2px 8px rgba(13,12,34,0.06), 0 12px 32px rgba(13,12,34,0.1);
+    }
+    .shadow-elevated {
+      box-shadow: 0 1px 2px rgba(13,12,34,0.03), 0 8px 24px rgba(13,12,34,0.08), 0 20px 48px rgba(196,112,75,0.04);
+    }
+
+    /* Spring easing */
+    .spring { transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+    /* Nav underline */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: #0d0c22;
+      transition: width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .nav-link:hover::after,
+    .nav-link:focus-visible::after { width: 100%; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Image gradient overlay */
+    .img-overlay { position: relative; overflow: hidden; }
+    .img-overlay::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,12,34,0.55) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .img-overlay .blend-layer {
+      position: absolute;
+      inset: 0;
+      background: rgba(196, 112, 75, 0.08);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    /* Card hover */
+    .card-lift {
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    }
+    .card-lift:hover { transform: translateY(-4px); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+
+    /* Focus visible */
+    *:focus-visible { outline: 2px solid #C4704B; outline-offset: 2px; }
+    .btn:active { transform: scale(0.97); }
+
+    /* Noise texture */
+    .noise::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Stat hover */
+    .stat-num {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .group:hover .stat-num { transform: scale(1.06); }
+  </style>
+</head>
+<body class="bg-white font-body text-brand-dark overflow-x-hidden">
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-brand-border/60" id="navbar">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-10 flex items-center justify-between h-[72px]">
+      <a href="#" class="flex items-center gap-2.5" aria-label="NEST Home">
+        <img src="brand_assets/logo NEST.png" alt="NEST" class="h-10 w-auto" />
+      </a>
+      <div class="hidden lg:flex items-center gap-9">
+        <a href="#about" class="nav-link text-[13px] font-semibold text-brand-muted hover:text-brand-dark transition-colors duration-300">About</a>
+        <a href="#services" class="nav-link text-[13px] font-semibold text-brand-muted hover:text-brand-dark transition-colors duration-300">Services</a>
+        <a href="#network" class="nav-link text-[13px] font-semibold text-brand-muted hover:text-brand-dark transition-colors duration-300">Our Network</a>
+        <a href="#process" class="nav-link text-[13px] font-semibold text-brand-muted hover:text-brand-dark transition-colors duration-300">How It Works</a>
+        <a href="#testimonials" class="nav-link text-[13px] font-semibold text-brand-muted hover:text-brand-dark transition-colors duration-300">Reviews</a>
+      </div>
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="mailto:info@nest.com"
+           class="btn bg-brand-dark text-white px-5 py-2.5 rounded-lg text-[13px] font-semibold
+                  hover:bg-brand-accent hover:shadow-[0_4px_20px_rgba(196,112,75,0.25)]
+                  focus-visible:ring-2 focus-visible:ring-brand-accent
+                  transition-transform transition-colors transition-shadow duration-300 spring">
+          Get in Touch
+        </a>
+      </div>
+      <button id="menuBtn" class="lg:hidden p-2 rounded-lg hover:bg-brand-light transition-colors duration-300" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 right-0 w-72 bg-white shadow-elevated z-50 p-8 flex flex-col gap-5 lg:hidden">
+      <button id="closeMenu" class="self-end p-2 rounded-lg hover:bg-brand-light transition-colors duration-300" aria-label="Close">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <a href="#about" class="text-base font-semibold text-brand-dark hover:text-brand-accent transition-colors duration-300">About</a>
+      <a href="#services" class="text-base font-semibold text-brand-dark hover:text-brand-accent transition-colors duration-300">Services</a>
+      <a href="#network" class="text-base font-semibold text-brand-dark hover:text-brand-accent transition-colors duration-300">Our Network</a>
+      <a href="#process" class="text-base font-semibold text-brand-dark hover:text-brand-accent transition-colors duration-300">How It Works</a>
+      <a href="mailto:info@nest.com" class="btn mt-4 text-center bg-brand-dark text-white px-6 py-3 rounded-lg font-semibold hover:bg-brand-accent transition-colors duration-300">Get in Touch</a>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="pt-[72px]">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-10 pt-16 lg:pt-24 pb-16">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <!-- Left: Copy -->
+        <div class="reveal">
+          <div class="flex items-center gap-2 mb-5">
+            <span class="w-8 h-[2px] bg-brand-accent"></span>
+            <span class="text-brand-accent text-xs font-bold tracking-widest uppercase">One Project. One Contact. Full Control.</span>
+          </div>
+          <h1 class="font-display text-[42px] sm:text-[52px] lg:text-[60px] heading-tight text-brand-dark mb-5" style="line-height:1.08">
+            Build Your Nest<br>
+            <span class="text-brand-accent">in Sicily.</span>
+          </h1>
+          <p class="text-brand-muted text-[15px] body-relaxed mb-8 max-w-md">
+            Buying or renovating a home in Sicily from abroad is complex, opaque, and risky. Too many contacts, too much bureaucracy, no single person in charge. NEST exists to solve this.
+          </p>
+          <div class="flex flex-wrap gap-4 mb-10">
+            <a href="#contact"
+               class="btn inline-flex items-center gap-2 bg-brand-dark text-white px-7 py-3.5 rounded-xl text-sm font-bold
+                      hover:bg-brand-accent hover:shadow-[0_4px_24px_rgba(196,112,75,0.3)]
+                      focus-visible:ring-2 focus-visible:ring-brand-accent
+                      transition-transform transition-colors transition-shadow duration-300 spring">
+              Start Your Project
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="#process"
+               class="btn inline-flex items-center gap-2 border-2 border-brand-border text-brand-dark px-7 py-3.5 rounded-xl text-sm font-bold
+                      hover:border-brand-accent hover:text-brand-accent hover:bg-brand-accent/5
+                      focus-visible:ring-2 focus-visible:ring-brand-accent
+                      transition-colors transition-transform duration-300 spring">
+              See How It Works
+            </a>
+          </div>
+          <!-- Trust indicators -->
+          <div class="flex items-center gap-8">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full bg-brand-accent/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+              </div>
+              <span class="text-brand-muted text-xs font-medium">End-to-End<br>Management</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full bg-brand-accent/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+              </div>
+              <span class="text-brand-muted text-xs font-medium">Remote Control<br>From Anywhere</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full bg-brand-accent/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+              </div>
+              <span class="text-brand-muted text-xs font-medium">Single Point<br>of Contact</span>
+            </div>
+          </div>
+        </div>
+        <!-- Right: Hero Image -->
+        <div class="reveal">
+          <div class="img-overlay rounded-2xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1524942434100-2b3f200f5b40?w=800&h=600&fit=crop&crop=center&q=80" alt="Aerial view of Cefalù coastline, Sicily"
+                 class="w-full h-[380px] lg:h-[480px] object-cover" />
+            <div class="blend-layer"></div>
+          </div>
+          <!-- Floating card -->
+          <div class="absolute -bottom-5 -left-4 bg-white rounded-xl shadow-elevated p-4 flex items-center gap-3 z-20 hidden lg:flex">
+            <div class="w-10 h-10 rounded-full bg-brand-accent/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-brand-dark text-sm">Fully Managed</p>
+              <p class="text-brand-muted text-xs">From search to keys in hand</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS BAND ============ -->
+  <section class="py-14 bg-brand-light border-y border-brand-border/40">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div class="text-center group reveal cursor-default">
+          <span class="stat-num block font-display text-[44px] lg:text-[52px] heading-tight text-brand-dark mb-1">1</span>
+          <p class="text-brand-muted text-sm font-medium">Single Point of Contact</p>
+        </div>
+        <div class="text-center group reveal cursor-default">
+          <span class="stat-num block font-display text-[44px] lg:text-[52px] heading-tight text-brand-dark mb-1">360&deg;</span>
+          <p class="text-brand-muted text-sm font-medium">Full Project Coverage</p>
+        </div>
+        <div class="text-center group reveal cursor-default">
+          <span class="stat-num block font-display text-[44px] lg:text-[52px] heading-tight text-brand-dark mb-1">100%</span>
+          <p class="text-brand-muted text-sm font-medium">Transparent Process</p>
+        </div>
+        <div class="text-center group reveal cursor-default">
+          <span class="stat-num block font-display text-[44px] lg:text-[52px] heading-tight text-brand-dark mb-1">24/7</span>
+          <p class="text-brand-muted text-sm font-medium">Remote Monitoring</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT / WHO WE ARE ============ -->
+  <section id="about" class="py-16 lg:py-24">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Images grid -->
+        <div class="grid grid-cols-2 gap-4 reveal">
+          <div class="img-overlay rounded-xl overflow-hidden h-[260px]">
+            <img src="https://images.unsplash.com/photo-1562709044-3d5e5d4c5f4d?w=400&h=360&fit=crop&crop=center&q=80" alt="Taormina hillside town overlooking the sea" class="w-full h-full object-cover" />
+            <div class="blend-layer"></div>
+          </div>
+          <div class="img-overlay rounded-xl overflow-hidden h-[260px] mt-8">
+            <img src="https://images.unsplash.com/photo-1506186773396-2a6370e52c1f?w=400&h=360&fit=crop&crop=center&q=80" alt="Cefalù beach and waterfront buildings" class="w-full h-full object-cover" />
+            <div class="blend-layer"></div>
+          </div>
+          <div class="img-overlay rounded-xl overflow-hidden h-[200px] col-span-2">
+            <img src="https://images.unsplash.com/photo-1681290034870-a92acbba39e4?w=800&h=300&fit=crop&crop=bottom&q=80" alt="Cefalù old town buildings with La Rocca cliff" class="w-full h-full object-cover" />
+            <div class="blend-layer"></div>
+          </div>
+        </div>
+        <!-- Copy -->
+        <div class="reveal">
+          <p class="text-brand-accent text-xs font-bold tracking-widest uppercase mb-3">About NEST</p>
+          <h2 class="font-display text-3xl lg:text-[40px] heading-tight text-brand-dark mb-5" style="line-height:1.1">
+            Not an Agency.<br>Your Single Partner.
+          </h2>
+          <p class="text-brand-muted text-[15px] body-relaxed mb-5">
+            NEST is not a real estate agency, a construction firm, or a technical studio. We are the single point of contact and control center for your entire home project in Sicily.
+          </p>
+          <p class="text-brand-muted text-[15px] body-relaxed mb-8">
+            We coordinate, govern, and guarantee the process from beginning to end &mdash; so you don't have to navigate the Italian system alone.
+          </p>
+          <div class="grid grid-cols-2 gap-5">
+            <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-brand-light transition-colors duration-300">
+              <div class="w-9 h-9 rounded-lg bg-brand-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4.5 h-4.5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-brand-dark text-sm">Full Clarity</p>
+                <p class="text-brand-muted text-xs">Transparent at every step</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-brand-light transition-colors duration-300">
+              <div class="w-9 h-9 rounded-lg bg-brand-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4.5 h-4.5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-brand-dark text-sm">Accountability</p>
+                <p class="text-brand-muted text-xs">One person responsible</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-brand-light transition-colors duration-300">
+              <div class="w-9 h-9 rounded-lg bg-brand-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4.5 h-4.5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-brand-dark text-sm">Continuity</p>
+                <p class="text-brand-muted text-xs">With you the entire way</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-brand-light transition-colors duration-300">
+              <div class="w-9 h-9 rounded-lg bg-brand-accent/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4.5 h-4.5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-brand-dark text-sm">Traceability</p>
+                <p class="text-brand-muted text-xs">Full visibility remotely</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services" class="py-16 lg:py-24 bg-brand-dark text-white relative noise overflow-hidden">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-10 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Left: Copy -->
+        <div class="reveal">
+          <p class="text-brand-accent text-xs font-bold tracking-widest uppercase mb-3">What We Do</p>
+          <h2 class="font-display text-3xl lg:text-[40px] heading-tight text-white mb-5" style="line-height:1.1">
+            Everything You Need,<br>Under One Roof
+          </h2>
+          <p class="text-white/60 text-[15px] body-relaxed mb-10">
+            We don't sell construction work. We sell management, control, and peace of mind. From identifying the right opportunity to handing you the keys &mdash; we manage every phase.
+          </p>
+          <a href="#contact" class="btn inline-flex items-center gap-2 bg-brand-accent text-white px-7 py-3.5 rounded-xl text-sm font-bold
+                                    hover:bg-brand-accent-light hover:shadow-[0_4px_24px_rgba(196,112,75,0.3)]
+                                    focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark
+                                    transition-transform transition-colors transition-shadow duration-300 spring">
+            Start Your Project
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+        <!-- Right: Service cards -->
+        <div class="space-y-4 reveal">
+          <div class="flex items-start gap-5 p-5 rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 hover:border-brand-accent/30 transition-colors duration-300 group cursor-default">
+            <div class="w-11 h-11 rounded-xl bg-brand-accent/15 flex items-center justify-center flex-shrink-0
+                        group-hover:bg-brand-accent group-hover:scale-110 transition-transform transition-colors duration-300 spring">
+              <svg class="w-5 h-5 text-brand-accent group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white text-base mb-1">Property Search & Selection</h3>
+              <p class="text-white/50 text-sm body-relaxed">We coordinate with local agents to find properties matching your vision, budget, and lifestyle.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-5 p-5 rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 hover:border-brand-accent/30 transition-colors duration-300 group cursor-default">
+            <div class="w-11 h-11 rounded-xl bg-brand-accent/15 flex items-center justify-center flex-shrink-0
+                        group-hover:bg-brand-accent group-hover:scale-110 transition-transform transition-colors duration-300 spring">
+              <svg class="w-5 h-5 text-brand-accent group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white text-base mb-1">Renovation & Design</h3>
+              <p class="text-white/50 text-sm body-relaxed">We manage architects, contractors, and artisans. Permits, timelines, and quality &mdash; all coordinated by us.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-5 p-5 rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 hover:border-brand-accent/30 transition-colors duration-300 group cursor-default">
+            <div class="w-11 h-11 rounded-xl bg-brand-accent/15 flex items-center justify-center flex-shrink-0
+                        group-hover:bg-brand-accent group-hover:scale-110 transition-transform transition-colors duration-300 spring">
+              <svg class="w-5 h-5 text-brand-accent group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white text-base mb-1">Legal & Bureaucracy</h3>
+              <p class="text-white/50 text-sm body-relaxed">Italian regulations, notary procedures, tax codes, and permits &mdash; navigated by our legal team on your behalf.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-5 p-5 rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 hover:border-brand-accent/30 transition-colors duration-300 group cursor-default">
+            <div class="w-11 h-11 rounded-xl bg-brand-accent/15 flex items-center justify-center flex-shrink-0
+                        group-hover:bg-brand-accent group-hover:scale-110 transition-transform transition-colors duration-300 spring">
+              <svg class="w-5 h-5 text-brand-accent group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white text-base mb-1">Ongoing Management</h3>
+              <p class="text-white/50 text-sm body-relaxed">After handover: maintenance, rentals, remote monitoring. Your home is always looked after.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ YOUR NETWORK / TEAM ============ -->
+  <section id="network" class="py-16 lg:py-24">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+      <div class="text-center mb-14 reveal">
+        <p class="text-brand-accent text-xs font-bold tracking-widest uppercase mb-3">Your Team on the Ground</p>
+        <h2 class="font-display text-3xl lg:text-[40px] heading-tight text-brand-dark mb-4" style="line-height:1.1">A Network of Experts,<br>Coordinated by NEST</h2>
+        <p class="text-brand-muted text-[15px] body-relaxed max-w-xl mx-auto">You don't need ten different suppliers. You need one partner who manages them all. NEST coordinates a vetted network of local professionals &mdash; and you deal only with us.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Professional 1 -->
+        <div class="card-lift p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover border border-brand-border/40 reveal group">
+          <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-5
+                      group-hover:bg-brand-accent group-hover:scale-110 transition-transform transition-colors duration-300 spring">
+            <svg class="w-6 h-6 text-brand-accent group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+          </div>
+          <h3 class="font-semibold text-brand-dark text-base mb-2">Real Estate Agents</h3>
+          <p class="text-brand-muted text-sm body-relaxed">Local agents with deep market knowledge who source properties matching your exact criteria across Sicily.</p>
+        </div>
+        <!-- Professional 2 -->
+        <div class="card-lift p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover border border-brand-border/40 reveal group">
+          <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-5
+                      group-hover:bg-brand-accent group-hover:scale-110 transition-transform transition-colors duration-300 spring">
+            <svg class="w-6 h-6 text-brand-accent group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3"/></svg>
+          </div>
+          <h3 class="font-semibold text-brand-dark text-base mb-2">Architects & Designers</h3>
+          <p class="text-brand-muted text-sm body-relaxed">Licensed architects who handle permits, structural plans, and interior design with local expertise and taste.</p>
+        </div>
+        <!-- Professional 3 -->
+        <div class="card-lift p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover border border-brand-border/40 reveal group">
+          <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-5
+                      group-hover:bg-brand-accent group-hover:scale-110 transition-transform transition-colors duration-300 spring">
+            <svg class="w-6 h-6 text-brand-accent group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+          </div>
+          <h3 class="font-semibold text-brand-dark text-base mb-2">Notaries & Lawyers</h3>
+          <p class="text-brand-muted text-sm body-relaxed">Legal professionals who handle contracts, property transfers, tax compliance, and all bureaucratic procedures.</p>
+        </div>
+        <!-- Professional 4 -->
+        <div class="card-lift p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover border border-brand-border/40 reveal group">
+          <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-5
+                      group-hover:bg-brand-accent group-hover:scale-110 transition-transform transition-colors duration-300 spring">
+            <svg class="w-6 h-6 text-brand-accent group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1h14.18"/></svg>
+          </div>
+          <h3 class="font-semibold text-brand-dark text-base mb-2">Builders & Contractors</h3>
+          <p class="text-brand-muted text-sm body-relaxed">Trusted construction companies for renovations, restorations, and new builds &mdash; vetted and managed by NEST.</p>
+        </div>
+        <!-- Professional 5 -->
+        <div class="card-lift p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover border border-brand-border/40 reveal group">
+          <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-5
+                      group-hover:bg-brand-accent group-hover:scale-110 transition-transform transition-colors duration-300 spring">
+            <svg class="w-6 h-6 text-brand-accent group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-semibold text-brand-dark text-base mb-2">Financial Advisors</h3>
+          <p class="text-brand-muted text-sm body-relaxed">Experts in Italian property taxation, mortgage options, and investment structuring for foreign buyers.</p>
+        </div>
+        <!-- Professional 6 -->
+        <div class="card-lift p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover border border-brand-border/40 reveal group">
+          <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-5
+                      group-hover:bg-brand-accent group-hover:scale-110 transition-transform transition-colors duration-300 spring">
+            <svg class="w-6 h-6 text-brand-accent group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="font-semibold text-brand-dark text-base mb-2">Property Managers</h3>
+          <p class="text-brand-muted text-sm body-relaxed">On-the-ground managers who maintain your property, handle rentals, and provide ongoing remote oversight.</p>
+        </div>
+      </div>
+      <!-- NEST at the center callout -->
+      <div class="mt-12 p-6 lg:p-8 rounded-2xl bg-brand-light border border-brand-border/60 text-center reveal">
+        <p class="font-display text-2xl lg:text-3xl heading-tight text-brand-dark mb-3">You talk to NEST. We talk to everyone else.</p>
+        <p class="text-brand-muted text-[15px] body-relaxed max-w-lg mx-auto">The client always belongs to NEST. Your interests are our priority &mdash; not those of any third-party supplier. We coordinate, you relax.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS / HOW IT WORKS ============ -->
+  <section id="process" class="py-16 lg:py-24 bg-brand-light">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+      <div class="text-center mb-14 reveal">
+        <p class="text-brand-accent text-xs font-bold tracking-widest uppercase mb-3">How It Works</p>
+        <h2 class="font-display text-3xl lg:text-[40px] heading-tight text-brand-dark mb-4" style="line-height:1.1">Your Path to a Sicilian Home</h2>
+        <p class="text-brand-muted text-[15px] body-relaxed max-w-lg mx-auto">A clear, streamlined process that eliminates the chaos of buying and renovating abroad. You stay in control &mdash; we handle the rest.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div class="relative p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover transition-shadow duration-300 reveal group">
+          <div class="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold text-sm mb-5
+                      group-hover:bg-brand-accent group-hover:shadow-[0_4px_16px_rgba(196,112,75,0.25)] transition-colors transition-shadow duration-300">01</div>
+          <h3 class="font-semibold text-brand-dark text-base mb-2">Discovery & Vision</h3>
+          <p class="text-brand-muted text-sm body-relaxed">We learn about your goals, lifestyle, budget, and timeline to define the perfect brief.</p>
+        </div>
+        <div class="relative p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover transition-shadow duration-300 reveal group">
+          <div class="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold text-sm mb-5
+                      group-hover:bg-brand-accent group-hover:shadow-[0_4px_16px_rgba(196,112,75,0.25)] transition-colors transition-shadow duration-300">02</div>
+          <h3 class="font-semibold text-brand-dark text-base mb-2">Search & Selection</h3>
+          <p class="text-brand-muted text-sm body-relaxed">Our agents source curated options, we organize virtual tours and feasibility analysis for each.</p>
+        </div>
+        <div class="relative p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover transition-shadow duration-300 reveal group">
+          <div class="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold text-sm mb-5
+                      group-hover:bg-brand-accent group-hover:shadow-[0_4px_16px_rgba(196,112,75,0.25)] transition-colors transition-shadow duration-300">03</div>
+          <h3 class="font-semibold text-brand-dark text-base mb-2">Acquisition & Renovation</h3>
+          <p class="text-brand-muted text-sm body-relaxed">We manage the purchase through our legal team, coordinate the renovation, and keep you updated weekly.</p>
+        </div>
+        <div class="relative p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover transition-shadow duration-300 reveal group">
+          <div class="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold text-sm mb-5
+                      group-hover:bg-brand-accent group-hover:shadow-[0_4px_16px_rgba(196,112,75,0.25)] transition-colors transition-shadow duration-300">04</div>
+          <h3 class="font-semibold text-brand-dark text-base mb-2">Handover & Beyond</h3>
+          <p class="text-brand-muted text-sm body-relaxed">Keys in hand, fully furnished if desired. Ongoing property management and remote monitoring available.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY NEST ============ -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Left: Image -->
+        <div class="reveal">
+          <div class="img-overlay rounded-2xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1574883848444-a9375a90c378?w=800&h=600&fit=crop&crop=center&q=80" alt="Aerial view of Cefalù cathedral and rooftops by the sea" class="w-full h-[400px] lg:h-[480px] object-cover" />
+            <div class="blend-layer"></div>
+          </div>
+        </div>
+        <!-- Right: Copy -->
+        <div class="reveal">
+          <p class="text-brand-accent text-xs font-bold tracking-widest uppercase mb-3">Why NEST</p>
+          <h2 class="font-display text-3xl lg:text-[40px] heading-tight text-brand-dark mb-6" style="line-height:1.1">
+            The Problem We Solve
+          </h2>
+          <div class="space-y-5">
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-light border border-brand-border/40">
+              <div class="w-8 h-8 rounded-full bg-brand-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-brand-dark text-sm mb-1">Without NEST</p>
+                <p class="text-brand-muted text-sm body-relaxed">You juggle ten different suppliers in a foreign language, navigate Italian bureaucracy alone, and have no single person accountable for your project.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-accent/5 border border-brand-accent/20">
+              <div class="w-8 h-8 rounded-full bg-brand-accent/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-brand-dark text-sm mb-1">With NEST</p>
+                <p class="text-brand-muted text-sm body-relaxed">One contact who speaks your language, coordinates every professional, and keeps you informed with full transparency &mdash; even from thousands of miles away.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 flex items-center gap-3">
+            <img src="brand_assets/logo NEST.png" alt="NEST" class="h-8 w-auto" />
+            <p class="text-brand-dark text-sm font-semibold italic font-display">Build your nest in Sicily.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section id="testimonials" class="py-16 lg:py-24 bg-brand-light">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+      <div class="text-center mb-14 reveal">
+        <p class="text-brand-accent text-xs font-bold tracking-widest uppercase mb-3">Testimonials</p>
+        <h2 class="font-display text-3xl lg:text-[40px] heading-tight text-brand-dark mb-4" style="line-height:1.1">What Our Clients Say</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div class="p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover transition-shadow duration-300 reveal">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-brand-muted text-sm body-relaxed mb-5">"NEST made what seemed impossible completely stress-free. They coordinated every professional &mdash; the agent, the notary, the architect &mdash; and we never had to chase anyone."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-brand-accent/20 flex items-center justify-center text-xs font-bold text-brand-accent">JM</div>
+            <div>
+              <p class="text-brand-dark text-sm font-semibold">James Mitchell</p>
+              <p class="text-brand-muted text-xs">London, UK</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover transition-shadow duration-300 reveal">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-brand-muted text-sm body-relaxed mb-5">"Having one person handle everything &mdash; from the notary to the architect &mdash; was a game changer. We felt protected and informed throughout the entire renovation."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-brand-dark/10 flex items-center justify-center text-xs font-bold text-brand-muted">AK</div>
+            <div>
+              <p class="text-brand-dark text-sm font-semibold">Anna Kowalski</p>
+              <p class="text-brand-muted text-xs">Berlin, Germany</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-white shadow-card hover:shadow-card-hover transition-shadow duration-300 reveal">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-brand-muted text-sm body-relaxed mb-5">"We retired to Sicily and NEST made it effortless. The transparency on costs and the weekly updates gave us total peace of mind from across the Atlantic."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-brand-accent/20 flex items-center justify-center text-xs font-bold text-brand-accent">RS</div>
+            <div>
+              <p class="text-brand-dark text-sm font-semibold">Robert & Sarah Chen</p>
+              <p class="text-brand-muted text-xs">Toronto, Canada</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="contact" class="py-16 lg:py-24 bg-brand-dark text-white relative noise overflow-hidden">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-brand-accent/5 -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-brand-accent/5 translate-y-1/2 -translate-x-1/3 pointer-events-none"></div>
+    <div class="max-w-3xl mx-auto px-6 lg:px-10 text-center relative z-10">
+      <div class="reveal">
+        <img src="brand_assets/logo NEST.png" alt="NEST" class="h-14 w-auto mx-auto mb-8 brightness-0 invert" />
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-[48px] heading-tight text-white mb-5" style="line-height:1.1">
+          Ready to Build Your Nest<br>in Sicily?
+        </h2>
+        <p class="text-white/50 text-[15px] body-relaxed mb-10 max-w-lg mx-auto">
+          Tell us about your vision. We'll show you how NEST can make it happen &mdash; with clarity, control, and zero stress.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="mailto:info@nest.com"
+             class="btn inline-flex items-center gap-2 bg-brand-accent text-white px-8 py-4 rounded-xl text-base font-bold
+                    hover:bg-brand-accent-light hover:shadow-[0_4px_32px_rgba(196,112,75,0.35)]
+                    focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark
+                    transition-transform transition-colors transition-shadow duration-300 spring">
+            Get in Touch
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="https://wa.me/"
+             class="btn inline-flex items-center gap-2 border-2 border-white/20 text-white/80 px-8 py-4 rounded-xl text-base font-bold
+                    hover:border-brand-accent hover:text-brand-accent hover:bg-brand-accent/5
+                    focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark
+                    transition-colors transition-transform duration-300 spring">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-brand-dark border-t border-white/5 pt-14 pb-8">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <!-- Col 1 -->
+        <div>
+          <img src="brand_assets/logo NEST.png" alt="NEST" class="h-10 w-auto mb-4 brightness-0 invert" />
+          <p class="text-white/40 text-sm body-relaxed mb-5">Your single partner for buying, renovating, and managing property in Sicily.</p>
+          <p class="text-white/30 text-xs">One Project. One Contact. Full Control.</p>
+        </div>
+        <!-- Col 2 -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Quick Links</h4>
+          <div class="space-y-2.5">
+            <a href="#about" class="block text-white/40 text-sm hover:text-brand-accent transition-colors duration-300">About</a>
+            <a href="#services" class="block text-white/40 text-sm hover:text-brand-accent transition-colors duration-300">Services</a>
+            <a href="#network" class="block text-white/40 text-sm hover:text-brand-accent transition-colors duration-300">Our Network</a>
+            <a href="#process" class="block text-white/40 text-sm hover:text-brand-accent transition-colors duration-300">How It Works</a>
+          </div>
+        </div>
+        <!-- Col 3 -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Our Network</h4>
+          <div class="space-y-2.5">
+            <span class="block text-white/40 text-sm">Real Estate Agents</span>
+            <span class="block text-white/40 text-sm">Architects & Designers</span>
+            <span class="block text-white/40 text-sm">Notaries & Lawyers</span>
+            <span class="block text-white/40 text-sm">Builders & Contractors</span>
+          </div>
+        </div>
+        <!-- Col 4 -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Contact</h4>
+          <div class="space-y-2.5">
+            <p class="text-white/40 text-sm">info@nest.com</p>
+            <p class="text-white/40 text-sm">Sicily, Italy</p>
+            <div class="flex items-center gap-3 pt-2">
+              <a href="#" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent/20 hover:text-brand-accent transition-colors duration-300 text-white/40 focus-visible:ring-2 focus-visible:ring-brand-accent" aria-label="Instagram">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </a>
+              <a href="#" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent/20 hover:text-brand-accent transition-colors duration-300 text-white/40 focus-visible:ring-2 focus-visible:ring-brand-accent" aria-label="LinkedIn">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="#" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent/20 hover:text-brand-accent transition-colors duration-300 text-white/40 focus-visible:ring-2 focus-visible:ring-brand-accent" aria-label="Facebook">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-white/30 text-xs">&copy; 2026 NEST. All rights reserved.</p>
+        <div class="flex items-center gap-6">
+          <a href="#" class="text-white/30 text-xs hover:text-white/60 transition-colors duration-300">Privacy Policy</a>
+          <a href="#" class="text-white/30 text-xs hover:text-white/60 transition-colors duration-300">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ JS ============ -->
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Navbar shadow on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.style.boxShadow = window.scrollY > 60 ? '0 1px 8px rgba(13,12,34,0.05)' : 'none';
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenuBtn = document.getElementById('closeMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+    closeMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
