@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(export PATH=\"/c/Program Files/nodejs:/c/Program Files/nodejs/node_modules/npm/bin:$PATH\")",
+      "Bash(\"/c/Program Files/nodejs/npm.cmd\" init -y)",
+      "Bash(\"/c/Program Files/nodejs/npm.cmd\" install puppeteer)"
+    ]
+  }
+}
