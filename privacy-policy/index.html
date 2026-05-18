@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — TAC Studio</title>
+  <meta name="description" content="Informativa sul trattamento dei dati personali ai sensi del Regolamento (UE) 2016/679 (GDPR).">
+  <link rel="canonical" href="https://www.tacstudio.it/privacy-policy">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Privacy Policy — TAC Studio">
+  <meta property="og:description" content="Informativa sul trattamento dei dati personali ai sensi del GDPR.">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:url" content="https://www.tacstudio.it/privacy-policy">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Design Tokens ─── */
+    :root {
+      --color-bg:           #000000;
+      --color-surface:      #0D0D0D;
+      --color-surface-2:    #1A1A1A;
+      --color-accent:       #FC882A;
+      --color-accent-hover: #FF9940;
+      --color-accent-dim:   rgba(252, 136, 42, 0.12);
+      --color-accent-glow:  rgba(252, 136, 42, 0.35);
+      --color-blue:         #0073CE;
+      --color-text:         #FFFFFF;
+      --color-text-muted:   rgba(255,255,255,0.55);
+      --color-text-subtle:  rgba(255,255,255,0.35);
+      --color-border:       rgba(255,255,255,0.08);
+      --color-border-muted: rgba(255,255,255,0.05);
+    }
+
+    /* ─── Reset ─── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ─── Noise Texture ─── */
+    .noise { position: relative; }
+    .noise::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── Header ─── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 40px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      color: var(--color-accent);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .logo-text:hover { opacity: 0.75; }
+    .logo-text:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    .header-back {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--color-text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .header-back:hover { color: var(--color-accent); }
+    .header-back svg { transition: transform 0.2s ease; }
+    .header-back:hover svg { transform: translateX(-3px); }
+
+    /* ─── Hero Banner ─── */
+    .hero-banner {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(252,136,42,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 80% 50%, rgba(0,115,206,0.06) 0%, transparent 45%),
+        var(--color-bg);
+      padding: 80px 40px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--color-accent-dim);
+      color: var(--color-accent);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(252,136,42,0.2);
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-title .accent { color: var(--color-accent); }
+
+    .hero-subtitle {
+      font-size: clamp(14px, 1.5vw, 17px);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--color-text-subtle);
+      font-weight: 500;
+    }
+    .hero-meta-item svg { color: var(--color-accent); opacity: 0.7; }
+
+    /* ─── TOC Sidebar Layout ─── */
+    .page-body {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 64px 40px 120px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* ─── Sidebar TOC ─── */
+    .toc {
+      position: sticky;
+      top: 100px;
+    }
+
+    .toc-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-subtle);
+      margin-bottom: 16px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .toc-list a {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      padding: 8px 12px 8px 16px;
+      border-left: 2px solid transparent;
+      border-radius: 0 6px 6px 0;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
+      line-height: 1.4;
+    }
+    .toc-list a:hover {
+      color: var(--color-accent);
+      border-left-color: var(--color-accent);
+      background: var(--color-accent-dim);
+      padding-left: 20px;
+    }
+    .toc-list a.active {
+      color: var(--color-accent);
+      border-left-color: var(--color-accent);
+      background: var(--color-accent-dim);
+    }
+
+    .toc-divider {
+      height: 1px;
+      background: var(--color-border);
+      margin: 16px 0;
+    }
+
+    .toc-contact {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+
+    .toc-contact-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .toc-contact a {
+      display: block;
+      font-size: 13px;
+      color: var(--color-accent);
+      text-decoration: none;
+      word-break: break-all;
+      transition: opacity 0.2s ease;
+    }
+    .toc-contact a:hover { opacity: 0.75; }
+
+    .toc-contact p {
+      font-size: 12px;
+      color: var(--color-text-subtle);
+      line-height: 1.6;
+      margin-top: 8px;
+    }
+
+    /* ─── Main Content ─── */
+    .content { min-width: 0; }
+
+    /* ─── Section ─── */
+    .pp-section {
+      margin-bottom: 72px;
+      scroll-margin-top: 100px;
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--color-accent-dim);
+      border: 1px solid rgba(252,136,42,0.2);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 20px;
+      color: var(--color-text);
+    }
+
+    .section-title .accent { color: var(--color-accent); }
+
+    .pp-section > p,
+    .pp-section > .prose {
+      font-size: 15px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .pp-section > p:last-child { margin-bottom: 0; }
+
+    /* ─── Info Cards ─── */
+    .info-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 16px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .info-card:hover {
+      border-color: rgba(252,136,42,0.3);
+      box-shadow: 0 0 24px rgba(252,136,42,0.06), 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .info-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent);
+      margin-bottom: 10px;
+    }
+
+    .info-card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+
+    .info-card p {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .info-card a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .info-card a:hover { opacity: 0.75; }
+
+    /* ─── Two-column cards ─── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    /* ─── Data table ─── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .data-table thead tr {
+      border-bottom: 1px solid rgba(252,136,42,0.3);
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent);
+    }
+
+    .data-table td {
+      padding: 14px 16px;
+      color: rgba(255,255,255,0.72);
+      vertical-align: top;
+      line-height: 1.6;
+      border-bottom: 1px solid var(--color-border-muted);
+    }
+
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .data-table tbody tr { transition: background 0.2s ease; }
+    .data-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .data-table td:first-child {
+      font-weight: 600;
+      color: var(--color-text);
+      white-space: nowrap;
+      width: 30%;
+    }
+
+    /* ─── Rights list ─── */
+    .rights-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .rights-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 20px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .rights-item:hover {
+      border-color: rgba(252,136,42,0.3);
+      transform: translateY(-3px);
+    }
+
+    .rights-item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--color-accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      transition: background 0.3s ease;
+    }
+    .rights-item:hover .rights-item-icon {
+      background: rgba(252,136,42,0.25);
+    }
+
+    .rights-item-icon svg { color: var(--color-accent); }
+
+    .rights-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 6px;
+    }
+
+    .rights-item p {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── Highlight box ─── */
+    .highlight-box {
+      background: var(--color-accent-dim);
+      border: 1px solid rgba(252,136,42,0.25);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight-box::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--color-accent);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .highlight-box p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+    }
+
+    .highlight-box strong { color: var(--color-accent); font-weight: 700; }
+
+    /* ─── Inline list ─── */
+    .pp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .pp-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+    }
+
+    .pp-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      margin-top: 9px;
+    }
+
+    /* ─── Section divider ─── */
+    .section-sep {
+      height: 1px;
+      background: var(--color-border);
+      margin-bottom: 72px;
+    }
+
+    /* ─── Footer ─── */
+    .site-footer {
+      border-top: 1px solid var(--color-border);
+      padding: 48px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .footer-brand { display: flex; flex-direction: column; gap: 8px; }
+    .footer-brand .logo-text { font-size: 20px; }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--color-text-subtle);
+      max-width: 240px;
+      line-height: 1.6;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .footer-col { display: flex; flex-direction: column; gap: 4px; }
+    .footer-col-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-subtle);
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      padding: 4px 0;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover { color: var(--color-accent); }
+    .footer-col a.current { color: var(--color-accent); }
+
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: var(--color-text-subtle);
+    }
+
+    .footer-bottom a {
+      color: var(--color-text-subtle);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-bottom a:hover { color: var(--color-text-muted); }
+
+    /* ─── Back to top ─── */
+    .back-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, border-color 0.2s ease;
+      z-index: 50;
+    }
+    .back-top.visible { opacity: 1; pointer-events: all; }
+    .back-top:hover {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: #000;
+      transform: translateY(-4px);
+      box-shadow: 0 0 20px var(--color-accent-glow);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 900px) {
+      .page-body {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 40px 24px 80px;
+      }
+      .toc { position: static; display: none; }
+      .hero-banner { padding: 56px 24px 48px; }
+      .site-header { padding: 0 24px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .rights-list { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; }
+      .footer-links { gap: 32px; }
+    }
+
+    @media (max-width: 600px) {
+      .data-table { display: block; overflow-x: auto; }
+      .hero-meta { flex-direction: column; gap: 10px; }
+    }
+
+    /* ─── Animations ─── */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fade-up 0.6s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+  </style>
+</head>
+<body class="noise">
+
+  <!-- ─── Header ─── -->
+  <header class="site-header">
+    <a href="https://www.tacstudio.it" class="logo-text">TAC</a>
+    <a href="https://www.tacstudio.it" class="header-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Torna al sito
+    </a>
+  </header>
+
+  <!-- ─── Hero Banner ─── -->
+  <div class="hero-banner noise">
+    <div class="hero-eyebrow fade-up">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Documento legale
+    </div>
+    <h1 class="hero-title fade-up delay-1">Privacy <span class="accent">Policy</span></h1>
+    <p class="hero-subtitle fade-up delay-2">
+      Informativa sul trattamento dei dati personali ai sensi del Regolamento (UE) 2016/679 — GDPR.
+    </p>
+    <div class="hero-meta fade-up delay-3">
+      <span class="hero-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Ultimo aggiornamento: 18 maggio 2026
+      </span>
+      <span class="hero-meta-item">·</span>
+      <span class="hero-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Lettura: ~6 minuti
+      </span>
+      <span class="hero-meta-item">·</span>
+      <span class="hero-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Alcamo (TP), Italia
+      </span>
+    </div>
+  </div>
+
+  <!-- ─── Body: TOC + Content ─── -->
+  <div class="page-body">
+
+    <!-- Sidebar TOC -->
+    <aside class="toc" aria-label="Indice dei contenuti">
+      <p class="toc-title">Indice</p>
+      <ul class="toc-list" id="toc-list">
+        <li><a href="#titolare">1. Titolare del trattamento</a></li>
+        <li><a href="#dati-raccolti">2. Dati raccolti</a></li>
+        <li><a href="#finalita">3. Finalità del trattamento</a></li>
+        <li><a href="#basi-giuridiche">4. Basi giuridiche</a></li>
+        <li><a href="#conservazione">5. Conservazione dei dati</a></li>
+        <li><a href="#destinatari">6. Destinatari e trasferimenti</a></li>
+        <li><a href="#cookie">7. Cookie e tecnologie simili</a></li>
+        <li><a href="#diritti">8. I tuoi diritti</a></li>
+        <li><a href="#minori">9. Minori</a></li>
+        <li><a href="#modifiche">10. Modifiche all'informativa</a></li>
+        <li><a href="#contatti">11. Contatti</a></li>
+      </ul>
+      <div class="toc-divider"></div>
+      <div class="toc-contact">
+        <p class="toc-contact-title">Contatto DPO</p>
+        <a href="mailto:privacy@tacstudio.it">privacy@tacstudio.it</a>
+        <p>Risposta entro 30 giorni ai sensi dell'art. 12 GDPR.</p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content" id="main-content">
+
+      <!-- ─── 1. Titolare ─── -->
+      <section class="pp-section" id="titolare">
+        <div class="section-number">01</div>
+        <h2 class="section-title">Titolare del <span class="accent">trattamento</span></h2>
+        <p>Il titolare del trattamento dei dati personali raccolti tramite il sito web <strong>www.tacstudio.it</strong> e attraverso qualsiasi altro canale di contatto è:</p>
+
+        <div class="info-card">
+          <div class="info-card-label">Soggetto giuridico</div>
+          <h4>TAC Studio</h4>
+          <p>
+            P.IVA: IT02882700814<br>
+            Sede legale: Viale Italia 15, Alcamo (TP), Italia<br>
+            Sito web: <a href="https://www.tacstudio.it">www.tacstudio.it</a><br>
+            E-mail generale: <a href="mailto:info@tacstudio.it">info@tacstudio.it</a><br>
+            E-mail privacy: <a href="mailto:privacy@tacstudio.it">privacy@tacstudio.it</a>
+          </p>
+        </div>
+
+        <p>Per qualsiasi questione relativa al trattamento dei dati personali è possibile contattare il titolare ai riferimenti indicati nella sezione <a href="#contatti" style="color:var(--color-accent);text-decoration:none;">11 — Contatti</a>.</p>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- ─── 2. Dati raccolti ─── -->
+      <section class="pp-section" id="dati-raccolti">
+        <div class="section-number">02</div>
+        <h2 class="section-title">Dati <span class="accent">raccolti</span></h2>
+        <p>TAC Studio raccoglie diverse categorie di dati personali, in funzione delle modalità con cui l'utente interagisce con i nostri servizi.</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Categoria</th>
+              <th>Esempi di dati</th>
+              <th>Modalità di raccolta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dati identificativi</td>
+              <td>Nome, cognome, ragione sociale, partita IVA</td>
+              <td>Moduli di contatto, email, contratti</td>
+            </tr>
+            <tr>
+              <td>Dati di contatto</td>
+              <td>Indirizzo email, numero di telefono, indirizzo postale</td>
+              <td>Moduli di contatto, email, WhatsApp</td>
+            </tr>
+            <tr>
+              <td>Dati professionali</td>
+              <td>Settore, ruolo, esigenze di business</td>
+              <td>Form di richiesta preventivo, colloqui</td>
+            </tr>
+            <tr>
+              <td>Dati di navigazione</td>
+              <td>Indirizzo IP, browser, pagine visitate, durata sessione</td>
+              <td>Automatica tramite cookie e log server</td>
+            </tr>
+            <tr>
+              <td>Dati di comunicazione</td>
+              <td>Contenuto di email e messaggi inviati a TAC Studio</td>
+              <td>Corrispondenza diretta con l'utente</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="highlight-box">
+          <p><strong>Nota:</strong> TAC Studio non raccoglie categorie particolari di dati personali ai sensi dell'art. 9 GDPR (es. dati sanitari, religiosi, politici, biometrici) né dati relativi a condanne penali o reati ai sensi dell'art. 10 GDPR, salvo che ciò sia necessario per l'esecuzione di un contratto e l'utente ne fornisca esplicitamente.</p>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- ─── 3. Finalità ─── -->
+      <section class="pp-section" id="finalita">
+        <div class="section-number">03</div>
+        <h2 class="section-title">Finalità del <span class="accent">trattamento</span></h2>
+        <p>I dati personali degli utenti sono trattati per le seguenti finalità:</p>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <div class="info-card-label">A — Gestione contatti</div>
+            <p>Rispondere a richieste di informazioni, preventivi o assistenza inviati tramite moduli, email o altri canali di comunicazione.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">B — Erogazione servizi</div>
+            <p>Eseguire prestazioni di consulenza, progettazione grafica, web design e comunicazione richieste dall'utente.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">C — Adempimenti contrattuali</div>
+            <p>Stipulare e gestire contratti di servizio, emettere fatture e adempiere agli obblighi fiscali e amministrativi.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">D — Comunicazioni commerciali</div>
+            <p>Inviare newsletter, aggiornamenti su servizi e promozioni, esclusivamente previo consenso espresso dell'interessato.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">E — Analisi e miglioramento</div>
+            <p>Analizzare il comportamento degli utenti sul sito per migliorare l'esperienza di navigazione e l'efficacia dei contenuti.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">F — Obblighi di legge</div>
+            <p>Adempiere a obblighi legali, regolamentari o fiscali, ovvero rispondere a richieste di autorità giudiziarie o amministrative.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- ─── 4. Basi giuridiche ─── -->
+      <section class="pp-section" id="basi-giuridiche">
+        <div class="section-number">04</div>
+        <h2 class="section-title">Basi <span class="accent">giuridiche</span></h2>
+        <p>Ogni attività di trattamento si fonda su almeno una delle seguenti basi giuridiche previste dall'art. 6 GDPR:</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Base giuridica</th>
+              <th>Riferimento GDPR</th>
+              <th>Quando si applica</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Consenso</td>
+              <td>Art. 6(1)(a)</td>
+              <td>Newsletter e comunicazioni di marketing; cookie analitici e di profilazione non essenziali</td>
+            </tr>
+            <tr>
+              <td>Esecuzione contratto</td>
+              <td>Art. 6(1)(b)</td>
+              <td>Trattamento necessario all'esecuzione di un contratto di servizio stipulato con l'interessato</td>
+            </tr>
+            <tr>
+              <td>Obbligo legale</td>
+              <td>Art. 6(1)(c)</td>
+              <td>Adempimenti fiscali, contabili e risposta a richieste di autorità competenti</td>
+            </tr>
+            <tr>
+              <td>Legittimo interesse</td>
+              <td>Art. 6(1)(f)</td>
+              <td>Gestione operativa del sito, sicurezza informatica, prevenzione frodi, follow-up commerciale B2B</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="highlight-box">
+          <p>Ove la base giuridica sia il <strong>consenso</strong>, l'interessato ha il diritto di revocarlo in qualsiasi momento, senza pregiudicare la liceità del trattamento effettuato prima della revoca, ai sensi dell'art. 7(3) GDPR.</p>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- ─── 5. Conservazione ─── -->
+      <section class="pp-section" id="conservazione">
+        <div class="section-number">05</div>
+        <h2 class="section-title">Conservazione dei <span class="accent">dati</span></h2>
+        <p>I dati personali sono conservati per il tempo strettamente necessario al conseguimento delle finalità per cui sono stati raccolti, nel rispetto del principio di limitazione della conservazione (art. 5(1)(e) GDPR).</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Tipologia</th>
+              <th>Periodo di conservazione</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Richieste di contatto / preventivi</td>
+              <td>24 mesi dalla data di ricezione, salvo che sfocino in un contratto</td>
+            </tr>
+            <tr>
+              <td>Dati contrattuali e fatturazione</td>
+              <td>10 anni dalla data dell'ultima fattura (obbligo fiscale — art. 2220 c.c.)</td>
+            </tr>
+            <tr>
+              <td>Dati di marketing (consenso)</td>
+              <td>Fino alla revoca del consenso o a specifica richiesta di cancellazione</td>
+            </tr>
+            <tr>
+              <td>Dati di navigazione (cookie tecnici)</td>
+              <td>Sessione o fino a 13 mesi (vedi sezione 7)</td>
+            </tr>
+            <tr>
+              <td>Corrispondenza e-mail</td>
+              <td>36 mesi dalla chiusura della relazione, salvo contenziosi in corso</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Al termine del periodo di conservazione i dati vengono cancellati in modo sicuro o anonimizzati irreversibilmente.</p>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- ─── 6. Destinatari ─── -->
+      <section class="pp-section" id="destinatari">
+        <div class="section-number">06</div>
+        <h2 class="section-title">Destinatari e <span class="accent">trasferimenti</span></h2>
+        <p>I dati personali possono essere comunicati, limitatamente alle finalità indicate, a:</p>
+
+        <ul class="pp-list">
+          <li><strong>Fornitori di servizi tecnici:</strong> hosting provider, piattaforme email, servizi di analisi web che agiscono in qualità di responsabili del trattamento ai sensi dell'art. 28 GDPR.</li>
+          <li><strong>Professionisti e consulenti:</strong> commercialisti, avvocati, consulenti del lavoro, vincolati al segreto professionale.</li>
+          <li><strong>Autorità pubbliche:</strong> ove richiesto da obblighi di legge o da provvedimenti dell'autorità giudiziaria o amministrativa.</li>
+          <li><strong>Collaboratori interni:</strong> personale di TAC Studio autorizzato al trattamento per le sole finalità operative.</li>
+        </ul>
+
+        <div class="info-card">
+          <div class="info-card-label">Trasferimenti extra-SEE</div>
+          <p>Qualora si rendesse necessario trasferire dati personali verso paesi terzi al di fuori dello Spazio Economico Europeo, TAC Studio si assicurerà che tali trasferimenti avvengano nel rispetto degli artt. 44–49 GDPR, mediante clausole contrattuali standard approvate dalla Commissione Europea o in presenza di una decisione di adeguatezza. I principali fornitori di servizi cloud utilizzati (es. Google, Microsoft) sono certificati nell'ambito del Data Privacy Framework UE-USA.</p>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- ─── 7. Cookie ─── -->
+      <section class="pp-section" id="cookie">
+        <div class="section-number">07</div>
+        <h2 class="section-title">Cookie e <span class="accent">tecnologie simili</span></h2>
+        <p>Il sito www.tacstudio.it utilizza cookie e tecnologie di tracciamento simili. I cookie sono piccoli file di testo depositati sul dispositivo dell'utente quando visita un sito web.</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Categoria</th>
+              <th>Scopo</th>
+              <th>Durata</th>
+              <th>Consenso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tecnici / essenziali</td>
+              <td>Funzionamento del sito, sicurezza, preferenze di sessione</td>
+              <td>Sessione / 12 mesi</td>
+              <td>Non richiesto</td>
+            </tr>
+            <tr>
+              <td>Analitici (anonimizzati)</td>
+              <td>Statistiche aggregate di navigazione (es. Google Analytics con IP anonimizzato)</td>
+              <td>13 mesi</td>
+              <td>Richiesto</td>
+            </tr>
+            <tr>
+              <td>Marketing / profilazione</td>
+              <td>Pubblicità personalizzata su piattaforme terze (es. Meta Pixel, Google Ads)</td>
+              <td>Fino a 24 mesi</td>
+              <td>Richiesto</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Al primo accesso al sito viene mostrato un banner informativo che consente all'utente di esprimere il proprio consenso alle categorie di cookie non essenziali. Il consenso può essere modificato o revocato in qualsiasi momento tramite le impostazioni del banner o del browser.</p>
+
+        <div class="highlight-box">
+          <p><strong>Come disabilitare i cookie:</strong> È possibile gestire le preferenze cookie tramite le impostazioni del browser (Chrome, Firefox, Safari, Edge). Si ricorda che la disabilitazione di cookie tecnici potrebbe compromettere il corretto funzionamento del sito.</p>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- ─── 8. Diritti ─── -->
+      <section class="pp-section" id="diritti">
+        <div class="section-number">08</div>
+        <h2 class="section-title">I tuoi <span class="accent">diritti</span></h2>
+        <p>In qualità di interessato, ai sensi degli artt. 15–22 GDPR, hai il diritto di esercitare i seguenti diritti nei confronti di TAC Studio:</p>
+
+        <ul class="rights-list">
+          <li class="rights-item">
+            <div class="rights-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>Accesso (art. 15)</h4>
+            <p>Ottenere conferma che sia in corso un trattamento di dati che ti riguardano e riceverne copia.</p>
+          </li>
+          <li class="rights-item">
+            <div class="rights-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </div>
+            <h4>Rettifica (art. 16)</h4>
+            <p>Ottenere la correzione di dati inesatti o l'integrazione di dati incompleti che ti riguardano.</p>
+          </li>
+          <li class="rights-item">
+            <div class="rights-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+            </div>
+            <h4>Cancellazione (art. 17)</h4>
+            <p>Richiedere la cancellazione dei tuoi dati personali ("diritto all'oblio"), ove sussistano le condizioni previste dal GDPR.</p>
+          </li>
+          <li class="rights-item">
+            <div class="rights-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+            </div>
+            <h4>Limitazione (art. 18)</h4>
+            <p>Chiedere la sospensione temporanea del trattamento in determinati casi previsti dalla normativa.</p>
+          </li>
+          <li class="rights-item">
+            <div class="rights-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h4>Portabilità (art. 20)</h4>
+            <p>Ricevere i dati forniti in un formato strutturato, di uso comune e leggibile da dispositivo automatico.</p>
+          </li>
+          <li class="rights-item">
+            <div class="rights-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </div>
+            <h4>Opposizione (art. 21)</h4>
+            <p>Opporti al trattamento dei tuoi dati, in particolare per finalità di marketing diretto o basato sul legittimo interesse.</p>
+          </li>
+          <li class="rights-item">
+            <div class="rights-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h4>Revoca consenso (art. 7)</h4>
+            <p>Revocare in qualsiasi momento il consenso precedentemente prestato, senza effetti retroattivi.</p>
+          </li>
+          <li class="rights-item">
+            <div class="rights-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4>Reclamo (art. 77)</h4>
+            <p>Proporre reclamo al Garante per la protezione dei dati personali: <a href="https://www.garanteprivacy.it" style="color:var(--color-accent);text-decoration:none;">garanteprivacy.it</a></p>
+          </li>
+        </ul>
+
+        <div class="highlight-box">
+          <p>Per esercitare i tuoi diritti, invia una richiesta scritta a <strong>privacy@tacstudio.it</strong>. TAC Studio risponderà entro <strong>30 giorni</strong> dalla ricezione della richiesta, come previsto dall'art. 12 GDPR. In caso di richieste complesse o numerose il termine può essere prorogato di ulteriori 60 giorni, previa comunicazione al richiedente.</p>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- ─── 9. Minori ─── -->
+      <section class="pp-section" id="minori">
+        <div class="section-number">09</div>
+        <h2 class="section-title"><span class="accent">Minori</span></h2>
+        <p>I servizi di TAC Studio sono destinati a soggetti che abbiano raggiunto la maggiore età (18 anni). TAC Studio non raccoglie intenzionalmente dati personali di minori di 14 anni senza il consenso verificabile dei genitori o dei tutori legali, ai sensi dell'art. 8 GDPR e dell'art. 2-quinquies del D.Lgs. 196/2003 (Codice Privacy).</p>
+        <p>Qualora venisse rilevata la raccolta accidentale di dati di minori, TAC Studio procederà immediatamente alla loro cancellazione. Se sei genitore o tutore e ritieni che tuo figlio abbia fornito dati personali senza il tuo consenso, contattaci a <a href="mailto:privacy@tacstudio.it" style="color:var(--color-accent);text-decoration:none;">privacy@tacstudio.it</a>.</p>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- ─── 10. Modifiche ─── -->
+      <section class="pp-section" id="modifiche">
+        <div class="section-number">10</div>
+        <h2 class="section-title">Modifiche all'<span class="accent">informativa</span></h2>
+        <p>TAC Studio si riserva il diritto di aggiornare la presente informativa in qualsiasi momento, in particolare per adeguarla a modifiche normative, giurisprudenziali o ai cambiamenti dei servizi offerti.</p>
+        <p>In caso di modifiche sostanziali, gli utenti registrati saranno informati mediante avviso via email o, in alternativa, mediante avviso prominente sul sito web. L'uso continuato del sito dopo la pubblicazione delle modifiche costituirà accettazione della nuova versione dell'informativa.</p>
+
+        <div class="info-card">
+          <div class="info-card-label">Storico versioni</div>
+          <table style="width:100%;border-collapse:collapse;">
+            <tbody>
+              <tr>
+                <td style="padding:10px 0;font-size:14px;color:var(--color-text);font-weight:600;border-bottom:1px solid var(--color-border-muted);width:40%;">18 maggio 2026</td>
+                <td style="padding:10px 0;font-size:14px;color:var(--color-text-muted);border-bottom:1px solid var(--color-border-muted);">Prima versione pubblica dell'informativa privacy</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- ─── 11. Contatti ─── -->
+      <section class="pp-section" id="contatti">
+        <div class="section-number">11</div>
+        <h2 class="section-title"><span class="accent">Contatti</span></h2>
+        <p>Per qualsiasi richiesta relativa alla presente informativa o al trattamento dei tuoi dati personali, puoi contattare TAC Studio attraverso i seguenti canali:</p>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <div class="info-card-label">Email privacy</div>
+            <h4>privacy@tacstudio.it</h4>
+            <p>Canale dedicato per richieste GDPR, esercizio dei diritti, reclami. Risposta garantita entro 30 giorni.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Email generale</div>
+            <h4>info@tacstudio.it</h4>
+            <p>Per informazioni sui servizi, richieste commerciali e contatti generali.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Sito web</div>
+            <h4><a href="https://www.tacstudio.it">www.tacstudio.it</a></h4>
+            <p>Modulo di contatto disponibile sul sito ufficiale.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Autorità di controllo</div>
+            <h4>Garante Privacy</h4>
+            <p>Puoi presentare reclamo al Garante: <a href="https://www.garanteprivacy.it">garanteprivacy.it</a> — Piazza Venezia 11, 00187 Roma.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div><!-- /page-body -->
+
+  <!-- ─── Footer ─── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="https://www.tacstudio.it" class="logo-text">TAC</a>
+          <p>Consulenza strategica, design e comunicazione per il tuo business.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <div class="footer-col">
+            <p class="footer-col-title">Azienda</p>
+            <a href="https://www.tacstudio.it">Home</a>
+            <a href="https://www.tacstudio.it/#servizi">Servizi</a>
+            <a href="https://www.tacstudio.it/#contatti">Contatti</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Legale</p>
+            <a href="/privacy-policy" class="current" aria-current="page">Privacy Policy</a>
+            <a href="/cookie-policy">Cookie Policy</a>
+            <a href="/termini-di-servizio">Termini di Servizio</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Contatti</p>
+            <a href="mailto:info@tacstudio.it">info@tacstudio.it</a>
+            <a href="mailto:privacy@tacstudio.it">privacy@tacstudio.it</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 TAC Studio — P.IVA IT02882700814 · Viale Italia 15, Alcamo (TP). Tutti i diritti riservati.</p>
+        <p>Informativa aggiornata al <time datetime="2026-05-18">18 maggio 2026</time> · Reg. (UE) 2016/679 GDPR</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-top" id="back-top" aria-label="Torna su" title="Torna in cima alla pagina">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    // ─── Back to top ───
+    const backTop = document.getElementById('back-top');
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    backTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ─── Active TOC ───
+    const sections = document.querySelectorAll('.pp-section[id]');
+    const tocLinks = document.querySelectorAll('#toc-list a');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(link => link.classList.remove('active'));
+          const active = document.querySelector(`#toc-list a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(s => observer.observe(s));
+
+    // ─── Smooth scroll on TOC click ───
+    tocLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

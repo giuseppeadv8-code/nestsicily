@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termini e Condizioni — TAC Studio</title>
+  <meta name="description" content="Termini e condizioni generali di utilizzo del sito e dei servizi TAC Studio.">
+  <link rel="canonical" href="https://www.tacstudio.it/termini-di-servizio">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Termini e Condizioni — TAC Studio">
+  <meta property="og:description" content="Termini e condizioni generali di utilizzo del sito e dei servizi TAC Studio.">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:url" content="https://www.tacstudio.it/termini-di-servizio">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg:           #000000;
+      --color-surface:      #0D0D0D;
+      --color-surface-2:    #1A1A1A;
+      --color-accent:       #FC882A;
+      --color-accent-hover: #FF9940;
+      --color-accent-dim:   rgba(252, 136, 42, 0.12);
+      --color-accent-glow:  rgba(252, 136, 42, 0.35);
+      --color-blue:         #0073CE;
+      --color-text:         #FFFFFF;
+      --color-text-muted:   rgba(255,255,255,0.55);
+      --color-text-subtle:  rgba(255,255,255,0.35);
+      --color-border:       rgba(255,255,255,0.08);
+      --color-border-muted: rgba(255,255,255,0.05);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    .noise { position: relative; }
+    .noise::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 40px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      color: var(--color-accent);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .logo-text:hover { opacity: 0.75; }
+    .logo-text:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; border-radius: 2px; }
+
+    .header-back {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--color-text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .header-back:hover { color: var(--color-accent); }
+    .header-back svg { transition: transform 0.2s ease; }
+    .header-back:hover svg { transform: translateX(-3px); }
+
+    /* Hero */
+    .hero-banner {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(252,136,42,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 80% 50%, rgba(0,115,206,0.06) 0%, transparent 45%),
+        var(--color-bg);
+      padding: 80px 40px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--color-accent-dim);
+      color: var(--color-accent);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(252,136,42,0.2);
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero-title .accent { color: var(--color-accent); }
+
+    .hero-subtitle {
+      font-size: clamp(14px, 1.5vw, 17px);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--color-text-subtle);
+      font-weight: 500;
+    }
+    .hero-meta-item svg { color: var(--color-accent); opacity: 0.7; }
+
+    /* Layout */
+    .page-body {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 64px 40px 120px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* TOC */
+    .toc { position: sticky; top: 100px; }
+    .toc-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-subtle);
+      margin-bottom: 16px;
+    }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .toc-list a {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      padding: 8px 12px 8px 16px;
+      border-left: 2px solid transparent;
+      border-radius: 0 6px 6px 0;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
+      line-height: 1.4;
+    }
+    .toc-list a:hover,
+    .toc-list a.active {
+      color: var(--color-accent);
+      border-left-color: var(--color-accent);
+      background: var(--color-accent-dim);
+      padding-left: 20px;
+    }
+    .toc-divider { height: 1px; background: var(--color-border); margin: 16px 0; }
+
+    .toc-contact {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .toc-contact-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .toc-contact a {
+      display: block;
+      font-size: 13px;
+      color: var(--color-accent);
+      text-decoration: none;
+      word-break: break-all;
+      transition: opacity 0.2s ease;
+    }
+    .toc-contact a:hover { opacity: 0.75; }
+    .toc-contact p { font-size: 12px; color: var(--color-text-subtle); line-height: 1.6; margin-top: 8px; }
+
+    /* Content */
+    .content { min-width: 0; }
+
+    .pp-section { margin-bottom: 72px; scroll-margin-top: 100px; }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--color-accent-dim);
+      border: 1px solid rgba(252,136,42,0.2);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .section-title .accent { color: var(--color-accent); }
+
+    .pp-section > p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .pp-section > p:last-child { margin-bottom: 0; }
+
+    .info-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 16px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .info-card:hover {
+      border-color: rgba(252,136,42,0.3);
+      box-shadow: 0 0 24px rgba(252,136,42,0.06), 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .info-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent);
+      margin-bottom: 10px;
+    }
+    .info-card h4 { font-size: 15px; font-weight: 600; color: var(--color-text); margin-bottom: 8px; }
+    .info-card p { font-size: 14px; color: var(--color-text-muted); line-height: 1.7; }
+    .info-card a { color: var(--color-accent); text-decoration: none; transition: opacity 0.2s ease; }
+    .info-card a:hover { opacity: 0.75; }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .highlight-box {
+      background: var(--color-accent-dim);
+      border: 1px solid rgba(252,136,42,0.25);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .highlight-box::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--color-accent);
+      border-radius: 0 2px 2px 0;
+    }
+    .highlight-box p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; }
+    .highlight-box strong { color: var(--color-accent); font-weight: 700; }
+
+    .warning-box {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .warning-box::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: #ef4444;
+      border-radius: 0 2px 2px 0;
+    }
+    .warning-box p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; }
+    .warning-box strong { color: #f87171; font-weight: 700; }
+
+    .pp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .pp-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+    }
+    .pp-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      margin-top: 9px;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .data-table thead tr { border-bottom: 1px solid rgba(252,136,42,0.3); }
+    .data-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent);
+    }
+    .data-table td {
+      padding: 14px 16px;
+      color: rgba(255,255,255,0.72);
+      vertical-align: top;
+      line-height: 1.6;
+      border-bottom: 1px solid var(--color-border-muted);
+    }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .data-table tbody tr { transition: background 0.2s ease; }
+    .data-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+    .data-table td:first-child { font-weight: 600; color: var(--color-text); white-space: nowrap; width: 35%; }
+
+    .section-sep { height: 1px; background: var(--color-border); margin-bottom: 72px; }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--color-border); padding: 48px 40px; }
+    .footer-inner { max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; }
+    .footer-brand { display: flex; flex-direction: column; gap: 8px; }
+    .footer-brand .logo-text { font-size: 20px; }
+    .footer-brand p { font-size: 13px; color: var(--color-text-subtle); max-width: 240px; line-height: 1.6; }
+    .footer-links { display: flex; gap: 48px; flex-wrap: wrap; }
+    .footer-col { display: flex; flex-direction: column; gap: 4px; }
+    .footer-col-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--color-text-subtle); margin-bottom: 12px;
+    }
+    .footer-col a { font-size: 13px; color: var(--color-text-muted); text-decoration: none; padding: 4px 0; transition: color 0.2s ease; }
+    .footer-col a:hover { color: var(--color-accent); }
+    .footer-col a.current { color: var(--color-accent); }
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border-muted);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-bottom p { font-size: 12px; color: var(--color-text-subtle); }
+    .footer-bottom a { color: var(--color-text-subtle); text-decoration: none; transition: color 0.2s ease; }
+    .footer-bottom a:hover { color: var(--color-text-muted); }
+
+    /* Back to top */
+    .back-top {
+      position: fixed; bottom: 32px; right: 32px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, border-color 0.2s ease;
+      z-index: 50;
+    }
+    .back-top.visible { opacity: 1; pointer-events: all; }
+    .back-top:hover {
+      background: var(--color-accent); border-color: var(--color-accent); color: #000;
+      transform: translateY(-4px); box-shadow: 0 0 20px var(--color-accent-glow);
+    }
+
+    @media (max-width: 900px) {
+      .page-body { grid-template-columns: 1fr; gap: 0; padding: 40px 24px 80px; }
+      .toc { position: static; display: none; }
+      .hero-banner { padding: 56px 24px 48px; }
+      .site-header { padding: 0 24px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; }
+      .footer-links { gap: 32px; }
+    }
+    @media (max-width: 600px) {
+      .data-table { display: block; overflow-x: auto; }
+      .hero-meta { flex-direction: column; gap: 10px; }
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fade-up 0.6s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+  </style>
+</head>
+<body class="noise">
+
+  <!-- Header -->
+  <header class="site-header">
+    <a href="https://www.tacstudio.it" class="logo-text">TAC</a>
+    <a href="https://www.tacstudio.it" class="header-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Torna al sito
+    </a>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero-banner noise">
+    <div class="hero-eyebrow fade-up">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Documento legale
+    </div>
+    <h1 class="hero-title fade-up delay-1">Termini e <span class="accent">Condizioni</span></h1>
+    <p class="hero-subtitle fade-up delay-2">
+      Condizioni generali di utilizzo del sito web e di acquisto dei servizi TAC Studio. Leggere attentamente prima dell'utilizzo.
+    </p>
+    <div class="hero-meta fade-up delay-3">
+      <span class="hero-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Ultimo aggiornamento: 18 maggio 2026
+      </span>
+      <span class="hero-meta-item">·</span>
+      <span class="hero-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Lettura: ~7 minuti
+      </span>
+      <span class="hero-meta-item">·</span>
+      <span class="hero-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Alcamo (TP), Italia
+      </span>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="page-body">
+
+    <!-- TOC -->
+    <aside class="toc" aria-label="Indice dei contenuti">
+      <p class="toc-title">Indice</p>
+      <ul class="toc-list" id="toc-list">
+        <li><a href="#definizioni">1. Definizioni</a></li>
+        <li><a href="#accettazione">2. Accettazione dei termini</a></li>
+        <li><a href="#servizi">3. Servizi offerti</a></li>
+        <li><a href="#contratto">4. Formazione del contratto</a></li>
+        <li><a href="#prezzi">5. Prezzi e pagamenti</a></li>
+        <li><a href="#esecuzione">6. Esecuzione dei servizi</a></li>
+        <li><a href="#proprieta">7. Proprietà intellettuale</a></li>
+        <li><a href="#responsabilita">8. Limitazione di responsabilità</a></li>
+        <li><a href="#recesso">9. Recesso e risoluzione</a></li>
+        <li><a href="#uso-sito">10. Uso del sito web</a></li>
+        <li><a href="#legge">11. Legge applicabile e foro</a></li>
+        <li><a href="#modifiche">12. Modifiche ai termini</a></li>
+        <li><a href="#contatti">13. Contatti</a></li>
+      </ul>
+      <div class="toc-divider"></div>
+      <div class="toc-contact">
+        <p class="toc-contact-title">Assistenza</p>
+        <a href="mailto:info@tacstudio.it">info@tacstudio.it</a>
+        <p>Per domande sui termini o sui servizi acquistati.</p>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <main class="content" id="main-content">
+
+      <!-- 1. Definizioni -->
+      <section class="pp-section" id="definizioni">
+        <div class="section-number">01</div>
+        <h2 class="section-title"><span class="accent">Definizioni</span></h2>
+        <p>Ai fini dei presenti Termini e Condizioni, i seguenti termini hanno il significato di seguito indicato:</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Termine</th>
+              <th>Definizione</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>"TAC Studio" / "noi"</td>
+              <td>TAC Studio, P.IVA IT02882700814, con sede in Viale Italia 15, Alcamo (TP), titolare del sito www.tacstudio.it</td>
+            </tr>
+            <tr>
+              <td>"Cliente" / "tu"</td>
+              <td>Qualsiasi persona fisica o giuridica che accede al sito o acquista servizi da TAC Studio</td>
+            </tr>
+            <tr>
+              <td>"Servizi"</td>
+              <td>Le prestazioni di consulenza, design, comunicazione, web e affini erogate da TAC Studio</td>
+            </tr>
+            <tr>
+              <td>"Sito"</td>
+              <td>Il sito web accessibile all'indirizzo www.tacstudio.it e tutti i suoi sottodomini</td>
+            </tr>
+            <tr>
+              <td>"Contratto"</td>
+              <td>L'accordo stipulato tra TAC Studio e il Cliente per l'erogazione di uno o più Servizi</td>
+            </tr>
+            <tr>
+              <td>"Preventivo"</td>
+              <td>Documento scritto contenente la descrizione, i tempi e il corrispettivo economico dei Servizi proposti</td>
+            </tr>
+            <tr>
+              <td>"Contenuti"</td>
+              <td>Testi, immagini, grafica, loghi, video, codice e qualsiasi altro materiale pubblicato sul Sito o consegnato al Cliente</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 2. Accettazione -->
+      <section class="pp-section" id="accettazione">
+        <div class="section-number">02</div>
+        <h2 class="section-title">Accettazione dei <span class="accent">termini</span></h2>
+        <p>L'accesso e l'utilizzo del Sito, nonché la richiesta o l'acquisto di qualsiasi Servizio, comporta l'accettazione integrale e senza riserve dei presenti Termini e Condizioni, della <a href="/privacy-policy" style="color:var(--color-accent);text-decoration:none;">Privacy Policy</a> e della <a href="/cookie-policy" style="color:var(--color-accent);text-decoration:none;">Cookie Policy</a>.</p>
+
+        <div class="highlight-box">
+          <p><strong>Se non accetti</strong> i presenti Termini, ti invitiamo a interrompere immediatamente l'utilizzo del Sito e a non richiedere Servizi a TAC Studio. L'uso continuato del Sito dopo la pubblicazione di modifiche ai Termini costituisce accettazione delle stesse.</p>
+        </div>
+
+        <p>I presenti Termini si applicano a tutti i visitatori del Sito e a tutti i Clienti, indipendentemente dal mezzo con cui è avvenuta la prima interazione con TAC Studio (sito web, email, telefono, social media).</p>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 3. Servizi -->
+      <section class="pp-section" id="servizi">
+        <div class="section-number">03</div>
+        <h2 class="section-title">Servizi <span class="accent">offerti</span></h2>
+        <p>TAC Studio eroga servizi professionali nel campo della consulenza strategica, del design e della comunicazione. L'offerta include, a titolo esemplificativo e non esaustivo:</p>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <div class="info-card-label">Design & Identità</div>
+            <p>Progettazione di identità visiva, loghi, brand guidelines, materiali stampati e digitali, packaging.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Web & Digital</div>
+            <p>Progettazione e sviluppo di siti web, landing page, e-commerce, interfacce utente e applicazioni web.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Comunicazione</div>
+            <p>Strategie di comunicazione, content marketing, copywriting, social media management, campagne ADV.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Consulenza</div>
+            <p>Analisi e consulenza strategica sul posizionamento di marca, architettura dell'informazione, UX research.</p>
+          </div>
+        </div>
+
+        <p>La descrizione puntuale dei Servizi è definita di volta in volta nel Preventivo accettato dal Cliente. TAC Studio si riserva il diritto di modificare, aggiornare o sospendere i Servizi offerti senza preavviso, fermo restando il rispetto degli impegni già assunti contrattualmente.</p>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 4. Contratto -->
+      <section class="pp-section" id="contratto">
+        <div class="section-number">04</div>
+        <h2 class="section-title">Formazione del <span class="accent">contratto</span></h2>
+        <p>Il Contratto tra TAC Studio e il Cliente si perfeziona secondo le seguenti fasi:</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Fase</th>
+              <th>Descrizione</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 — Richiesta</td>
+              <td>Il Cliente invia una richiesta di informazioni o preventivo tramite i canali ufficiali di TAC Studio</td>
+            </tr>
+            <tr>
+              <td>2 — Preventivo</td>
+              <td>TAC Studio predispone e trasmette un Preventivo scritto, valido per 30 giorni dalla data di emissione</td>
+            </tr>
+            <tr>
+              <td>3 — Accettazione</td>
+              <td>Il Cliente accetta il Preventivo per iscritto (email o firma digitale/cartacea). Il Contratto si considera concluso al ricevimento dell'accettazione</td>
+            </tr>
+            <tr>
+              <td>4 — Anticipo</td>
+              <td>Salvo diverso accordo, l'avvio dei lavori è subordinato al pagamento dell'acconto indicato nel Preventivo</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="highlight-box">
+          <p>Il Preventivo non costituisce proposta contrattuale vincolante per TAC Studio sino all'accettazione formale da parte del Cliente. Qualsiasi modifica ai termini del Preventivo deve essere concordata per iscritto e accettata da entrambe le parti.</p>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 5. Prezzi e pagamenti -->
+      <section class="pp-section" id="prezzi">
+        <div class="section-number">05</div>
+        <h2 class="section-title">Prezzi e <span class="accent">pagamenti</span></h2>
+        <p>Tutti i prezzi indicati nei Preventivi sono espressi in Euro (€) e si intendono al netto di IVA, salvo diversa indicazione. L'IVA sarà applicata nella misura vigente al momento della fatturazione.</p>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <div class="info-card-label">Modalità di pagamento</div>
+            <p>Bonifico bancario, PayPal o altri metodi concordati. Le coordinate bancarie sono indicate in fattura.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Struttura tipica</div>
+            <p>Acconto del 30–50% all'avvio, saldo alla consegna del progetto finale. Struttura personalizzabile per progetti complessi.</p>
+          </div>
+        </div>
+
+        <ul class="pp-list">
+          <li><strong>Termini di pagamento:</strong> il saldo è dovuto entro 15 giorni dalla data di fattura, salvo diverso accordo scritto.</li>
+          <li><strong>Ritardo nel pagamento:</strong> in caso di ritardo, TAC Studio si riserva di applicare gli interessi di mora ai sensi del D.Lgs. 231/2002, nonché di sospendere i lavori in corso.</li>
+          <li><strong>Spese accessorie:</strong> costi di terze parti (font, stock foto, hosting, domini, stampe, etc.) non inclusi nel Preventivo sono a carico del Cliente e verranno fatturati separatamente previo accordo.</li>
+          <li><strong>Preventivi personalizzati:</strong> per progetti di ampia portata i compensi possono essere concordati su base mensile (retainer) o a progetto chiuso.</li>
+        </ul>
+
+        <div class="warning-box">
+          <p><strong>Attenzione:</strong> il mancato pagamento nei termini concordati conferisce a TAC Studio il diritto di sospendere la consegna dei materiali, revocare le licenze d'uso già concesse e, previa diffida, risolvere il Contratto ai sensi dell'art. 1454 c.c.</p>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 6. Esecuzione -->
+      <section class="pp-section" id="esecuzione">
+        <div class="section-number">06</div>
+        <h2 class="section-title">Esecuzione dei <span class="accent">servizi</span></h2>
+        <p>TAC Studio si impegna a eseguire i Servizi con la diligenza professionale richiesta, nel rispetto delle tempistiche indicate nel Preventivo o concordate per iscritto.</p>
+
+        <ul class="pp-list">
+          <li><strong>Collaborazione del Cliente:</strong> il Cliente si impegna a fornire tempestivamente le informazioni, i materiali e le approvazioni necessarie all'avanzamento dei lavori. I ritardi imputabili al Cliente non sono addebitabili a TAC Studio e possono comportare lo slittamento delle date di consegna.</li>
+          <li><strong>Revisioni:</strong> il numero di cicli di revisione inclusi è indicato nel Preventivo. Revisioni eccedenti il limite concordato saranno fatturate separatamente in base alle tariffe orarie vigenti.</li>
+          <li><strong>Approvazione finale:</strong> la consegna si considera accettata se il Cliente non formula rilievi scritti entro 7 giorni lavorativi dalla ricezione. Il silenzio equivale ad approvazione tacita.</li>
+          <li><strong>Varianti in corso d'opera:</strong> modifiche sostanziali all'ambito del progetto concordato (scope creep) saranno oggetto di un Preventivo integrativo prima dell'esecuzione.</li>
+        </ul>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 7. Proprietà intellettuale -->
+      <section class="pp-section" id="proprieta">
+        <div class="section-number">07</div>
+        <h2 class="section-title">Proprietà <span class="accent">intellettuale</span></h2>
+        <p>I diritti di proprietà intellettuale sui Contenuti e sui materiali prodotti da TAC Studio sono regolati come segue:</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Materiale</th>
+              <th>Titolarità</th>
+              <th>Condizioni</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Elaborati finali consegnati</td>
+              <td>Trasferiti al Cliente</td>
+              <td>Solo a saldo integrale del corrispettivo e salvo diverso accordo scritto</td>
+            </tr>
+            <tr>
+              <td>Bozze, mockup, concept intermedi</td>
+              <td>TAC Studio</td>
+              <td>Non trasferiti; il Cliente non ha diritto di utilizzo autonomo</td>
+            </tr>
+            <tr>
+              <td>Contenuti del sito tacstudio.it</td>
+              <td>TAC Studio</td>
+              <td>Vietata la riproduzione senza autorizzazione scritta</td>
+            </tr>
+            <tr>
+              <td>Materiali forniti dal Cliente</td>
+              <td>Cliente</td>
+              <td>Il Cliente garantisce di averne i diritti e manleva TAC Studio da qualsiasi pretesa di terzi</td>
+            </tr>
+            <tr>
+              <td>Font e asset di terze parti</td>
+              <td>Rispettivi licenziatari</td>
+              <td>Utilizzati nel rispetto delle licenze d'uso; le licenze commerciali sono a carico del Cliente</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="highlight-box">
+          <p>TAC Studio si riserva il diritto di inserire i Servizi realizzati nel proprio portfolio e di citare il Cliente come riferimento commerciale, salvo diverso accordo scritto di riservatezza (NDA).</p>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 8. Responsabilità -->
+      <section class="pp-section" id="responsabilita">
+        <div class="section-number">08</div>
+        <h2 class="section-title">Limitazione di <span class="accent">responsabilità</span></h2>
+        <p>TAC Studio eroga Servizi professionali di natura intellettuale e creativa. Fermo restando il rispetto degli standard di diligenza professionale, si precisa quanto segue:</p>
+
+        <ul class="pp-list">
+          <li><strong>Risultati di business:</strong> TAC Studio non garantisce il raggiungimento di specifici obiettivi commerciali, incrementi di fatturato o risultati di mercato derivanti dall'utilizzo dei Servizi.</li>
+          <li><strong>Contenuto di terze parti:</strong> TAC Studio non è responsabile di contenuti, prodotti o servizi di siti web di terze parti eventualmente linkati dal Sito.</li>
+          <li><strong>Interruzione del Sito:</strong> TAC Studio non garantisce la continuità operativa del Sito e non è responsabile di danni derivanti da interruzioni temporanee per manutenzione o cause tecniche.</li>
+          <li><strong>Massimale:</strong> in nessun caso la responsabilità complessiva di TAC Studio nei confronti del Cliente potrà eccedere il corrispettivo netto effettivamente pagato dal Cliente per il Servizio che ha dato origine alla controversia.</li>
+          <li><strong>Danni indiretti:</strong> TAC Studio non è responsabile di danni indiretti, consequenziali, lucro cessante o perdita di dati, salvo dolo o colpa grave.</li>
+        </ul>
+
+        <div class="warning-box">
+          <p><strong>Il Cliente è responsabile</strong> della verifica della conformità legale dei contenuti da lui forniti (testi, immagini, marchi) e manleva TAC Studio da qualsiasi pretesa di terzi derivante dall'utilizzo di tali materiali.</p>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 9. Recesso -->
+      <section class="pp-section" id="recesso">
+        <div class="section-number">09</div>
+        <h2 class="section-title">Recesso e <span class="accent">risoluzione</span></h2>
+        <p>Il Contratto può essere sciolto nelle seguenti modalità:</p>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <div class="info-card-label">Recesso del Cliente</div>
+            <p>Il Cliente può recedere dal Contratto con preavviso scritto di 15 giorni. Sarà tenuto al pagamento di tutte le attività già svolte da TAC Studio fino alla data di comunicazione del recesso, più un'indennità pari al 20% del valore residuo del Preventivo a copertura dei costi organizzativi già sostenuti.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Recesso di TAC Studio</div>
+            <p>TAC Studio può recedere dal Contratto con preavviso scritto di 15 giorni in caso di inadempimento del Cliente (es. mancato pagamento, fornitura di materiali illeciti, comportamento pregiudizievole). In tal caso rimane dovuto il compenso per le attività già svolte.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Risoluzione per inadempimento</div>
+            <p>Qualsiasi parte può risolvere il Contratto ai sensi dell'art. 1454 c.c. previa diffida ad adempiere con termine non inferiore a 15 giorni.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Forza maggiore</div>
+            <p>Nessuna delle parti è responsabile per ritardi o inadempimenti causati da eventi di forza maggiore (pandemia, catastrofi naturali, blocchi normativi). Le obbligazioni sono sospese per la durata dell'evento, con obbligo di comunicazione immediata.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 10. Uso del sito -->
+      <section class="pp-section" id="uso-sito">
+        <div class="section-number">10</div>
+        <h2 class="section-title">Uso del <span class="accent">sito web</span></h2>
+        <p>L'utilizzo del Sito è consentito esclusivamente per finalità lecite e nel rispetto delle seguenti regole:</p>
+
+        <ul class="pp-list">
+          <li>È vietato utilizzare il Sito per trasmettere contenuti illeciti, diffamatori, offensivi o lesivi di diritti di terzi.</li>
+          <li>È vietato tentare di accedere in modo non autorizzato ai sistemi informatici di TAC Studio o di terze parti.</li>
+          <li>È vietato riprodurre, distribuire, modificare o creare opere derivate dai Contenuti del Sito senza previa autorizzazione scritta.</li>
+          <li>È vietato utilizzare strumenti automatizzati (bot, scraper) per l'estrazione massiva di dati dal Sito.</li>
+          <li>È vietato qualsiasi comportamento che possa compromettere la sicurezza, l'integrità o la disponibilità del Sito.</li>
+        </ul>
+
+        <p>TAC Studio si riserva il diritto di bloccare l'accesso al Sito a qualsiasi utente che violi le presenti regole, senza preavviso e senza obbligo di motivazione.</p>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 11. Legge applicabile -->
+      <section class="pp-section" id="legge">
+        <div class="section-number">11</div>
+        <h2 class="section-title">Legge applicabile e <span class="accent">foro competente</span></h2>
+        <p>I presenti Termini e Condizioni e tutti i Contratti stipulati tra TAC Studio e il Cliente sono regolati dalla <strong>legge italiana</strong>.</p>
+
+        <div class="info-card">
+          <div class="info-card-label">Risoluzione delle controversie</div>
+          <p>In caso di controversia, le parti si impegnano preliminarmente a tentare una risoluzione amichevole mediante trattativa diretta. Qualora non si raggiunga un accordo entro 30 giorni dalla formale contestazione scritta, le controversie saranno devolute alla competenza esclusiva del <strong>Tribunale di Trapani</strong>.<br><br>Per i Contratti con Consumatori (ai sensi del D.Lgs. 206/2005 — Codice del Consumo) si applicano le norme inderogabili a tutela del Consumatore, incluse le disposizioni sul foro del Consumatore.</p>
+        </div>
+
+        <p>Il Cliente consumatore residente nell'UE ha inoltre la facoltà di ricorrere alla piattaforma europea di risoluzione alternativa delle controversie online (ODR Platform) all'indirizzo <a href="https://ec.europa.eu/consumers/odr" style="color:var(--color-accent);text-decoration:none;">ec.europa.eu/consumers/odr</a>.</p>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 12. Modifiche -->
+      <section class="pp-section" id="modifiche">
+        <div class="section-number">12</div>
+        <h2 class="section-title">Modifiche ai <span class="accent">termini</span></h2>
+        <p>TAC Studio si riserva il diritto di modificare i presenti Termini in qualsiasi momento, pubblicando la versione aggiornata sul Sito con indicazione della data di entrata in vigore.</p>
+        <p>Le modifiche non si applicano ai Contratti già in corso di esecuzione alla data della modifica, salvo accordo scritto tra le parti. L'uso continuato del Sito dopo la pubblicazione delle modifiche costituisce accettazione dei nuovi Termini.</p>
+
+        <div class="info-card">
+          <div class="info-card-label">Storico versioni</div>
+          <table style="width:100%;border-collapse:collapse;">
+            <tbody>
+              <tr>
+                <td style="padding:10px 0;font-size:14px;color:var(--color-text);font-weight:600;border-bottom:1px solid var(--color-border-muted);width:40%;">18 maggio 2026</td>
+                <td style="padding:10px 0;font-size:14px;color:var(--color-text-muted);border-bottom:1px solid var(--color-border-muted);">Prima versione pubblica dei Termini e Condizioni</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="section-sep"></div>
+
+      <!-- 13. Contatti -->
+      <section class="pp-section" id="contatti">
+        <div class="section-number">13</div>
+        <h2 class="section-title"><span class="accent">Contatti</span></h2>
+        <p>Per qualsiasi domanda relativa ai presenti Termini o ai Servizi di TAC Studio:</p>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <div class="info-card-label">TAC Studio</div>
+            <h4>info@tacstudio.it</h4>
+            <p>Viale Italia 15, Alcamo (TP)<br>P.IVA IT02882700814</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Sito web</div>
+            <h4><a href="https://www.tacstudio.it">www.tacstudio.it</a></h4>
+            <p>Modulo di contatto disponibile sul sito ufficiale per richieste commerciali e preventivi.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="https://www.tacstudio.it" class="logo-text">TAC</a>
+          <p>Consulenza strategica, design e comunicazione per il tuo business.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <div class="footer-col">
+            <p class="footer-col-title">Azienda</p>
+            <a href="https://www.tacstudio.it">Home</a>
+            <a href="https://www.tacstudio.it/#servizi">Servizi</a>
+            <a href="https://www.tacstudio.it/#contatti">Contatti</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Legale</p>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/cookie-policy">Cookie Policy</a>
+            <a href="/termini-di-servizio" class="current" aria-current="page">Termini e Condizioni</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Contatti</p>
+            <a href="mailto:info@tacstudio.it">info@tacstudio.it</a>
+            <a href="mailto:privacy@tacstudio.it">privacy@tacstudio.it</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 TAC Studio — P.IVA IT02882700814 · Viale Italia 15, Alcamo (TP). Tutti i diritti riservati.</p>
+        <p>Aggiornato al <time datetime="2026-05-18">18 maggio 2026</time> · Diritto italiano applicabile</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-top" id="back-top" aria-label="Torna su" title="Torna in cima alla pagina">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const backTop = document.getElementById('back-top');
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const sections = document.querySelectorAll('.pp-section[id]');
+    const tocLinks = document.querySelectorAll('#toc-list a');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`#toc-list a[href="#${entry.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(s => observer.observe(s));
+
+    tocLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
